@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Moped Builder</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  color: white;
+}
+
+header {
+  background: #000;
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  background: #1f1f1f;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+  width: 280px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+select, input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #00ff88;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00cc6a;
+}
+
+.result {
+  font-size: 22px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.preview {
+  text-align: center;
+}
+
+.bike-box {
+  width: 200px;
+  height: 120px;
+  margin: auto;
+  border-radius: 10px;
+  background: gray;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<header>🔥 Moped Builder 🔥</header>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Välj moppe</h3>
+    <select>
+      <option>Rieju MRT</option>
+      <option>Derbi Senda</option>
+      <option>Yamaha DT</option>
+    </select>
+
+    <h3>Färg</h3>
+    <input type="color" id="color" onchange="changeColor()">
+
+    <div class="bike-box" id="bike"></div>
+  </div>
+
+  <div class="card">
+    <h3>Delar</h3>
+
+    <label>Avgas</label>
+    <select id="exhaust">
+      <option value="0">Standard (0 kr)</option>
+      <option value="2500">Sport (2500 kr)</option>
+      <option value="4000">Racing (4000 kr)</option>
+    </select>
+
+    <label>Styre</label>
+    <select id="handlebar">
+      <option value="0">Standard</option>
+      <option value="800">Fatbar (800 kr)</option>
+      <option value="1200">Cross (1200 kr)</option>
+    </select>
+
+    <label>Höjning</label>
+    <select id="lift">
+      <option value="0">Ingen</option>
+      <option value="500">+30mm (500 kr)</option>
+      <option value="900">+50mm (900 kr)</option>
+    </select>
+
+    <button onclick="calculate()">Beräkna pris</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+</div>
+
+<script>
+function calculate() {
+  let exhaust = parseInt(document.getElementById("exhaust").value);
+  let handlebar = parseInt(document.getElementById("handlebar").value);
+  let lift = parseInt(document.getElementById("lift").value);
+
+  let total = exhaust + handlebar + lift;
+
+  document.getElementById("result").innerHTML =
+    "💰 Totalt: " + total + " kr";
+}
+
+function changeColor() {
+  let color = document.getElementById("color").value;
+  document.getElementById("bike").style.background = color;
+}
+</script>
+
+</body>
+</html>
